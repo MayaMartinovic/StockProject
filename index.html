@@ -4,16 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script> 
     <link rel="stylesheet" href="style.css">
     <script src="config.js"></script>
     <script src="index.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script> 
+    
 </head>
 <body>
     <h1>Stock Evaluator</h1>
     <label>Enter the company:</label><br>
     <input type="text" id="stockInput" placeholder="EXMPL: AAPL, TSLA MCST">
-    <button id="submitBtn" onclick="getStockData()">submit</button><br>
+    <button id="submitBtn" onclick="testWithFakeData()">submit</button><br>
     
     <canvas id="priceChart"></canvas>
     

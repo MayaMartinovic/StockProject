@@ -1,6 +1,8 @@
+// function to get normal stock data
 async function getStockData() {
     // grab whatever the user typed into the input box
     const symbol = document.getElementById("stockInput").value.toUpperCase();
+    
     // create url variable
     const url = `https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${symbol}&apikey=${API_KEY}`;
     
@@ -35,9 +37,8 @@ async function getStockData() {
 }
 
 // creating a new function to handle getting the histry
-
 async function getHistory(symbol) {
-    /*const url = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${symbol}&apikey=${API_KEY}`;
+    const url = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${symbol}&apikey=${API_KEY}`;
     const response = await fetch(url);
     const data = await response.json();
     
@@ -45,9 +46,21 @@ async function getHistory(symbol) {
     console.log(series);
 
     return series;
-    */
-    // TEMPORARY: fake data while rate-limited, swap back to the real fetch later
-    const fakeData = {
+}
+
+// tester: for fake stuff
+async function getFakeStockData() {
+    // write it into the page
+    document.getElementById("result").innerHTML = `
+        <h2>Appl</h2>
+        <p>Price: $1000.00</p>
+        <p>Change: $3.78 (5%)</p>
+    `;
+}
+
+// creating a new function to handle getting the histry
+async function fakeGetHistory(symbol) {
+ const fakeData = {
         "2026-09-04": { "4. close": "319.97" },
         "2026-09-03": { "4. close": "328.21" },
         "2026-09-02": { "4. close": "325.10" },
@@ -58,6 +71,15 @@ async function getHistory(symbol) {
     };
     console.log(fakeData);
     return fakeData;
+}
+
+// function to call eveyrthing test wise
+async function testWithFakeData() {
+    await getFakeStockData();
+    const priceHistory = await fakeGetHistory();
+
+    drawChart(priceHistory);
+
 }
 
 // function to handle the graphing of the data
