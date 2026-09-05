@@ -6,14 +6,18 @@
     <title>Document</title>
     <script src="config.js"></script>
     <script src="index.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script> 
 </head>
 <body>
     <h1>Stock Evaluator</h1>
     <label>Enter the company:</label><br>
-    <input type="text" id="tickerInput" placeholder="EXMPL: AAPL, TSLA MCST">
+    <input type="text" id="symbolInput" placeholder="EXMPL: AAPL, TSLA MCST">
     <button id="submitBtn" onclick="getStockData()">submit</button><br>
     
+    <canvas id="priceChart"></canvas>
+    
     <div id="result">result</div>
+    
 
     <footer>
         Educational project only — not financial advice. <br>
