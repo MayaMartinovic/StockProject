@@ -88,16 +88,16 @@ function drawChart(priceHistory) {
     // Object.entries turns {date: values} into [[date, values], [date, values], ...]
     const entries = Object.entries(priceHistory).reverse(); // oldest to newest, left to right
 
-    const labels = entries.map(([date, values]) => date);
-    const prices = entries.map(([date, values]) => parseFloat(values["4. close"]));
+    const labels = entries.map(([date, values]) => date); // these are the horizontal date labels
+    const prices = entries.map(([date, values]) => parseFloat(values["4. close"])); // these are the price values vertical
 
     new Chart(document.getElementById("priceChart"), {
         type: "line",
         data: {
-            labels: labels,
+            labels: labels, // x - axis
             datasets: [{
                 label: "Closing price",
-                data: prices
+                data: prices // y - axis
             }]
         }
     });
