@@ -1,6 +1,6 @@
 async function getStockData() {
     // grab whatever the user typed into the input box
-    const symbol = document.getElementById("symbolInput").value.toUpperCase();
+    const symbol = document.getElementById("stockInput").value.toUpperCase();
     // create url variable
     const url = `https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${symbol}&apikey=${API_KEY}`;
     
@@ -13,6 +13,13 @@ async function getStockData() {
     // looking at the response data for now
     const quote = data["Global Quote"];
     console.log(quote); 
+
+    // if something went wrong
+    if (!quote) {
+        document.getElementById("result").innerHTML = `<p>Something went wrong — check the console.</p>`;
+        console.log(data);
+        return;
+    }
 
     // pull out just the fields we care about
     const price = quote["05. price"];
@@ -30,5 +37,12 @@ async function getStockData() {
 // creating a new function to handle the graphing of the data
 
 async function getHistory(symbol) {
+    const url = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${symbol}&apikey=${API_KEY}`;
+    const response = await fetch(url);
+    const data = await response.json();
     
+    const series = data["Time Series (Daily)"];
+    console.log(series);
+
+    return series;
 }
