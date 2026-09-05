@@ -34,10 +34,10 @@ async function getStockData() {
     `;
 }
 
-// creating a new function to handle the graphing of the data
+// creating a new function to handle getting the histry
 
 async function getHistory(symbol) {
-    const url = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${symbol}&apikey=${API_KEY}`;
+    /*const url = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${symbol}&apikey=${API_KEY}`;
     const response = await fetch(url);
     const data = await response.json();
     
@@ -45,4 +45,38 @@ async function getHistory(symbol) {
     console.log(series);
 
     return series;
+    */
+    // TEMPORARY: fake data while rate-limited, swap back to the real fetch later
+    const fakeData = {
+        "2026-09-04": { "4. close": "319.97" },
+        "2026-09-03": { "4. close": "328.21" },
+        "2026-09-02": { "4. close": "325.10" },
+        "2026-09-01": { "4. close": "322.50" },
+        "2026-08-29": { "4. close": "330.00" },
+        "2026-08-28": { "4. close": "334.75" },
+        "2026-08-27": { "4. close": "329.40" }
+    };
+    console.log(fakeData);
+    return fakeData;
+}
+
+// function to handle the graphing of the data
+
+function drawChart(priceHistory) {
+    // Object.entries turns {date: values} into [[date, values], [date, values], ...]
+    const entries = Object.entries(priceHistory).reverse(); // oldest to newest, left to right
+
+    const labels = entries.map(([date, values]) => date);
+    const prices = entries.map(([date, values]) => parseFloat(values["4. close"]));
+
+    new Chart(document.getElementById("priceChart"), {
+        type: "line",
+        data: {
+            labels: labels,
+            datasets: [{
+                label: "Closing price",
+                data: prices
+            }]
+        }
+    });
 }
