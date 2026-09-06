@@ -12,11 +12,13 @@
 </head>
 <body>
     <h1>Stock Evaluator</h1>
-    <label>Enter the company:</label><br>
-    <input type="text" id="stockInput" placeholder="EXMPL: AAPL, TSLA MCST">
+    <label>Enter the company name:</label><br>
+    <input type="text" id="stockInput" placeholder="EX: AAPL, TSLA MCST">
     <button id="submitBtn" onclick="testWithFakeData()">submit</button><br>
     
-    <canvas id="priceChart"></canvas>
+    <div style="width: 500px; height: 300px;">
+        <canvas id="priceChart"></canvas>
+    </div>
     
     <div id="result">result</div>
     
