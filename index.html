@@ -12,10 +12,17 @@
 </head>
 <body>
     <h1>Stock Evaluator</h1>
-    <label>Enter the company name:</label><br>
+    <label for="stockInput">Enter the company name:</label><br>
     <input type="text" id="stockInput" placeholder="EX: AAPL, TSLA MCST">
     <button id="submitBtn" onclick="testWithFakeData()">submit</button><br>
     
+    <div id="chartControls">
+        <button onclick="updateChart('4. close')">Close</button>
+        <button onclick="updateChart('1. open')">Open</button>
+        <button onclick="updateChart('2. high')">High</button>
+        <button onclick="updateChart('3. low')">Low</button>
+        <button onclick="updateChart('5. volume')">Volume</button>
+    </div>
     <div style="width: 500px; height: 300px;">
         <canvas id="priceChart"></canvas>
     </div>
