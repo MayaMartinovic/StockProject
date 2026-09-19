@@ -1,3 +1,33 @@
+/* MAIN SUBMIT HANDLER */
+
+async function handleSubmit() {
+    let symbol;
+
+    try {
+        symbol = await getStockData();
+        if (!symbol) throw new Error("No symbol returned");
+    } catch (error) {
+        console.log("Quote lookup failed, falling back to fake data:", error);
+        await testWithFakeData();
+        return;
+    }
+
+    // Quote succeeded — now try history separately
+    try {
+        const priceHistory = await getHistory(symbol);
+        if (!priceHistory) throw new Error("No history data");
+
+        currentPriceHistory = priceHistory;
+        drawChart(priceHistory);
+
+    } catch (error) {
+        console.log("History lookup failed, using fake chart data instead:", error);
+        const fakeHistory = await fakeGetHistory();
+        currentPriceHistory = fakeHistory;
+        drawChart(fakeHistory);
+    }
+}
+
 /* REAL DATA STUFF */
 
 // function to get normal stock data
@@ -40,7 +70,7 @@ async function getStockData() {
     return symbol; 
 }
 
-// creating a new function to handle getting the histry
+// creating a new function to handle getting the history
 async function getHistory(symbol) {
     const url = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${symbol}&apikey=${API_KEY}`;
     const response = await fetch(url);
@@ -141,5 +171,5 @@ function drawChart(priceHistory, field = "4. close") {
 
 function updateChart(field) {
     if (!currentPriceHistory) return;
-    drawChart(currentPriceHistory, field);
+        drawChart(currentPriceHistory, field);
 }

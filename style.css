@@ -1,94 +1,134 @@
-/* ===== 1. LAYOUT ===== */
+/* ===== BASE ===== */
 body {
-    max-width: 600px;
-    margin: 40px auto;
+    max-width: 520px;
+    margin: 60px auto;
     padding: 0 20px;
-}
-
-/* ===== 2. TYPOGRAPHY ===== */
-body {
-    font-family: Arial, sans-serif;
-    line-height: 1.5;
-    color: #222;
+    font-family: 'IBM Plex Mono', monospace;
+    line-height: 1.6;
+    color: #171A21;
+    background: #F6F3EA;
 }
 
 h1 {
-    font-size: 1.8rem;
-    margin-bottom: 4px;
+    font-family: 'Newsreader', serif;
+    font-size: 2rem;
+    font-weight: 600;
+    margin: 0 0 4px;
+    letter-spacing: -0.01em;
 }
 
 label {
-    font-size: 0.95rem;
-    color: #555;
+    font-size: 0.85rem;
+    color: #6B6F76;
+    display: block;
+    margin-top: 24px;
 }
 
-/* ===== 3. COLOR PALETTE ===== */
-:root {
-    --accent: #4f7cff;
-    --bg-light: #f5f6f8;
-    --text-muted: #666;
-}
-
-/* ===== 4. SPACING / COMPONENT STYLING ===== */
+/* ===== INPUT ROW ===== */
 input {
     padding: 10px 12px;
-    font-size: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 6px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.95rem;
+    border: 1px solid #171A21;
+    background: transparent;
     margin-top: 8px;
-    width: 250px;
+    width: 220px;
 }
 
-#submitBtn{
-    padding: 10px 18px;
-    font-size: 1rem;
+input:focus {
+    outline: none;
+    border-width: 2px;
+}
+
+#submitBtn {
+    padding: 10px 20px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.95rem;
     margin-top: 8px;
     margin-left: 8px;
-    background: var(--accent);
-    color: white;
+    background: #171A21;
+    color: #F6F3EA;
     border: none;
-    border-radius: 6px;
     cursor: pointer;
 }
 
 #submitBtn:hover {
-    background: #3d68f0;
+    background: #3A3E47;
 }
 
+/* --- RESULT --- */
 #result {
-    margin-top: 20px;
-    padding: 16px;
-    background: var(--bg-light);
-    border-radius: 8px;
+    margin-top: 28px;
+    padding: 20px 22px;
+    background: #FFFEFA;
+    border: 1px solid #171A21;
+    position: relative;
+}
+
+#result::before {
+    content: "QUOTE";
+    position: absolute;
+    top: -9px;
+    left: 16px;
+    background: #F6F3EA;
+    padding: 0 8px;
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    color: #6B6F76;
+}
+
+#result h2 {
+    font-family: 'Newsreader', serif;
+    font-size: 1.5rem;
+    margin: 0 0 8px;
+}
+
+#result p {
+    margin: 4px 0;
+    font-size: 0.95rem;
+}
+
+/* Functional color — only used to signal real gain/loss */
+.gain { color: #1F7A4D; }
+.loss { color: #B23A2E; }
+
+/* ===== CHART CONTROLS ===== */
+#chartControls {
+    margin-top: 28px;
+    display: flex;
+    gap: 2px;
 }
 
 #chartControls button {
-    font-size: 1rem;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    background: var(--accent);
-    color: white;
-    border: none;
-    border-radius: 6px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.85rem;
+    padding: 8px 14px;
+    background: transparent;
+    color: #171A21;
+    border: 1px solid #DEDACD;
     cursor: pointer;
 }
 
-footer {
-    margin-top: 40px;
-    font-size: 0.8rem;
-    color: var(--text-muted);
+#chartControls button:hover {
+    border-color: #171A21;
+    background: #171A21;
+    color: #F6F3EA;
 }
 
-/* ===== 5. RESPONSIVENESS ===== */
-@media (max-width: 500px) {
-    input {
-        width: 100%;
-        margin-left: 0;
-    }
+/* ===== CHART ===== */
+#priceChart {
+    margin-top: 4px;
+}
 
-    button {
-        width: 100%;
-        margin-left: 0;
-        margin-top: 8px;
-    }
+/* ===== FOOTER ===== */
+footer {
+    margin-top: 48px;
+    font-size: 0.78rem;
+    color: #6B6F76;
+    border-top: 1px solid #DEDACD;
+    padding-top: 16px;
+}
+
+footer hr {
+    display: none;
 }

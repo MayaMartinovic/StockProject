@@ -14,7 +14,7 @@
     <h1>Stock Evaluator</h1>
     <label for="stockInput">Enter the company name:</label><br>
     <input type="text" id="stockInput" placeholder="EX: AAPL, TSLA MCST">
-    <button id="submitBtn" onclick="testWithFakeData()">submit</button><br>
+    <button id="submitBtn" onclick="handleSubmit()">submit</button><br>
     
     <div id="chartControls">
         <button onclick="updateChart('4. close')">Close</button>
@@ -27,7 +27,7 @@
         <canvas id="priceChart"></canvas>
     </div>
     
-    <div id="result">result</div>
+    <div id="result"></div>
     
 
     <footer>
